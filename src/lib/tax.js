@@ -3,7 +3,7 @@ const TAX_BRACKETS = [
 	{ min: 14001, max: 48000, rate: 0.175 },
 	{ min: 48001, max: 70000, rate: 0.3 },
 	{ min: 70001, max: 180000, rate: 0.33 },
-	{ min: 180001, max: Infinity, rate: 0.33 }
+	{ min: 180001, max: Infinity, rate: 0.39 }
 ]; // Anualized.
 
 const ACC_LEVY = 1.53 / 100;
@@ -11,12 +11,16 @@ const ACC_LEVY = 1.53 / 100;
 const STUDENT_LOAN_RATE = 12 / 100;
 const STUDENT_THRESHOLD = 22828; // Anualized.
 
+const WEEKS_IN_YEAR = 52;
+const MONTHS_IN_YEAR = 12;
+const HOURS_IN_YEAR = 2080;
+
 class NZIncome {
 	constructor(income, kiwiSaver, hasStudentLoan) {
-		this.income = income;
+		this.income = income || 0;
+		this.kiwiSaver = kiwiSaver / 100 || 0;
+		this.hasStudentLoan = hasStudentLoan || false;
 		this.taxBrackets = TAX_BRACKETS;
-		this.kiwiSaver = kiwiSaver / 100;
-		this.hasStudentLoan = hasStudentLoan;
 	}
 
 	takehome() {
@@ -25,13 +29,15 @@ class NZIncome {
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
 		const net = this.income - kiwiSaver - acc - tax - studentLoan;
+		const percent = Math.round(this.income / net);
 		return {
 			gross: this.income,
 			net,
 			tax,
 			acc,
 			kiwiSaver,
-			studentLoan
+			studentLoan,
+			percent
 		};
 	}
 
@@ -55,7 +61,7 @@ class NZIncome {
 	}
 
 	calculateKiwisaver() {
-		return this.kiwiSaver ? this.kiwiSaver * this.income : 0;
+		return this.kiwiSaver * this.income;
 	}
 
 	calculateStudentLoan() {
@@ -68,22 +74,37 @@ class NZIncome {
 	}
 }
 
-const convertToYearly = (pay, period) => {
-	const weeksInYear = 52.1775;
-	const monthsInYear = 12;
+function convertToYearly(pay, period) {
 	switch (period) {
 		case 'year':
 			return pay;
 		case 'month':
-			return pay * monthsInYear;
+			return pay * MONTHS_IN_YEAR;
 		case 'week':
-			return pay * weeksInYear;
+			return pay * WEEKS_IN_YEAR;
+		case 'hour':
+			return pay * HOURS_IN_YEAR;
 		default:
 			return -1;
 	}
-};
+}
 
-export function yearlyTakehome(income) {
+function convertfromYearly(pay, period) {
+	switch (period) {
+		case 'year':
+			return pay;
+		case 'month':
+			return pay / MONTHS_IN_YEAR;
+		case 'week':
+			return pay / WEEKS_IN_YEAR;
+		case 'hour':
+			return pay / HOURS_IN_YEAR;
+		default:
+			return -1;
+	}
+}
+
+export  function yearlyTakehome(income) {
 	const yearlyPay = convertToYearly(income.pay, income.period);
 	const calculator = new NZIncome(yearlyPay, income.kiwiSaver, income.hasStudentLoan);
 	return calculator.takehome();

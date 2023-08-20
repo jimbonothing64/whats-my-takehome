@@ -18,22 +18,28 @@
 </script>
 
 <main>
-	<fieldset>
-		I make $
-		<input type="number" bind:value={income.pay} />
-		<select bind:value={income.period}>
-			<option value="week">week</option>
-			<option value="fortnight">fortnight</option>
-			<option value="month">month</option>
-			<option value="year">year</option>
-		</select>
-		<input type="checkbox" />
-		<input type="checkbox" />
-		<input type="checkbox" />
-	</fieldset>
-	<h1>
-		You'd take home {takehome.net} of ({takehome.gross}) with tax of {takehome.tax}, acc levy of {takehome.acc},
-		{takehome.kiwiSaver},
-		{takehome.studentLoan}
-	</h1>
+	<div
+		class="flex w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700"
+	>
+		<fieldset>
+			I make $
+			<input type="number" bind:value={income.pay} />
+			per
+			<select bind:value={income.period}>
+				<option value="hour">hour</option>
+				<option value="week">week</option>
+				<option value="fortnight">fortnight</option>
+				<option value="month">month</option>
+				<option value="year">year</option>
+			</select>
+
+			<input type="checkbox" />
+			<input type="checkbox" />
+			<input type="checkbox" />
+		</fieldset>
+		<div>${takehome.net || '-'}</div>
+		<div>Take home</div>
+		<div>{takehome.percent || '-'}%</div>
+		<div>Take home</div>
+	</div>
 </main>
