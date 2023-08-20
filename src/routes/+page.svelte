@@ -9,6 +9,7 @@
 		gross: 0,
 		net: 0,
 		tax: 0,
+		acc: 0,
 		kiwiSaver: 0,
 		studentLoan: 0
 	};
@@ -31,7 +32,8 @@
 		<input type="checkbox" />
 	</fieldset>
 	<h1>
-		You'd take home {takehome.net} of ({takehome.gross}) with tax of {takehome.tax}, {takehome.kiwiSaver},
+		You'd take home {takehome.net} of ({takehome.gross}) with tax of {takehome.tax}, acc levy of {takehome.acc},
+		{takehome.kiwiSaver},
 		{takehome.studentLoan}
 	</h1>
 </main>

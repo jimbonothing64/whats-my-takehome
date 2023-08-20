@@ -6,7 +6,9 @@ const TAX_BRACKETS = [
 	{ min: 180001, max: Infinity, rate: 0.33 }
 ]; // Anualized.
 
-const STUDENT_LOAN_RATE = 0.12;
+const ACC_LEVY = 1.53 / 100;
+
+const STUDENT_LOAN_RATE = 12 / 100;
 const STUDENT_THRESHOLD = 22828; // Anualized.
 
 class NZIncome {
@@ -19,14 +21,15 @@ class NZIncome {
 
 	takehome() {
 		const tax = this.calculatePAYE();
+		const acc = this.calculateACC();
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
-		const net = this.income - kiwiSaver - tax - studentLoan;
-		console.log(this);
+		const net = this.income - kiwiSaver - acc - tax - studentLoan;
 		return {
 			gross: this.income,
 			net,
 			tax,
+			acc,
 			kiwiSaver,
 			studentLoan
 		};
@@ -45,6 +48,10 @@ class NZIncome {
 		}
 
 		return taxAmount;
+	}
+
+	calculateACC() {
+		return this.income * ACC_LEVY;
 	}
 
 	calculateKiwisaver() {
@@ -79,6 +86,5 @@ const convertToYearly = (pay, period) => {
 export function yearlyTakehome(income) {
 	const yearlyPay = convertToYearly(income.pay, income.period);
 	const calculator = new NZIncome(yearlyPay, income.kiwiSaver, income.hasStudentLoan);
-	console.log(calculator.takehome());
 	return calculator.takehome();
 }
