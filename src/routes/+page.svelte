@@ -1,24 +1,25 @@
 <script>
+	import { yearlyTakehome } from '$lib/tax.js';
 	let income = {
 		pay: 0,
-		period: 'week',
-		isStudent: false
+		period: 'year',
+		hasStudentLoan: true
 	};
 	let takehome = {
-		pay: 0,
-		tax: 0
+		gross: 0,
+		net: 0,
+		tax: 0,
+		kiwiSaver: 0,
+		studentLoan: 0
 	};
 
-	$: {
-		takehome.tax = 0.4 * income.pay;
-		takehome.pay = income.pay - takehome.tax;
-	}
+	$: takehome = yearlyTakehome(income);
 </script>
 
 <main>
 	<fieldset>
 		I make $
-		<input bind:value={income.pay} />
+		<input type="number" bind:value={income.pay} />
 		<select bind:value={income.period}>
 			<option value="week">week</option>
 			<option value="fortnight">fortnight</option>
@@ -30,6 +31,7 @@
 		<input type="checkbox" />
 	</fieldset>
 	<h1>
-		You'd take home {takehome.pay} with tax of {takehome.tax}.
+		You'd take home {takehome.net} of ({takehome.gross}) with tax of {takehome.tax}, {takehome.kiwiSaver},
+		{takehome.studentLoan}
 	</h1>
 </main>

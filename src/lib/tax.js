@@ -21,8 +21,11 @@ class NZIncome {
 		const tax = this.calculatePAYE();
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
+		const net = this.income - kiwiSaver - tax - studentLoan;
+		console.log(this);
 		return {
-			pay: this.income - kiwiSaver - tax - studentLoan,
+			gross: this.income,
+			net,
 			tax,
 			kiwiSaver,
 			studentLoan
@@ -45,7 +48,7 @@ class NZIncome {
 	}
 
 	calculateKiwisaver() {
-		return this.kiwiSaver ? 0 : this.kiwiSaver * this.income;
+		return this.kiwiSaver ? this.kiwiSaver * this.income : 0;
 	}
 
 	calculateStudentLoan() {
@@ -58,7 +61,24 @@ class NZIncome {
 	}
 }
 
-export default {
-	NZIncome,
-	TAX_BRACKETS
+const convertToYearly = (pay, period) => {
+	const weeksInYear = 52.1775;
+	const monthsInYear = 12;
+	switch (period) {
+		case 'year':
+			return pay;
+		case 'month':
+			return pay * monthsInYear;
+		case 'week':
+			return pay * weeksInYear;
+		default:
+			return -1;
+	}
 };
+
+export function yearlyTakehome(income) {
+	const yearlyPay = convertToYearly(income.pay, income.period);
+	const calculator = new NZIncome(yearlyPay, income.kiwiSaver, income.hasStudentLoan);
+	console.log(calculator.takehome());
+	return calculator.takehome();
+}
