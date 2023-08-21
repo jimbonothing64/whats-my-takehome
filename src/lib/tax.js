@@ -29,7 +29,7 @@ class NZIncome {
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
 		const net = this.income - kiwiSaver - acc - tax - studentLoan;
-		const percent = Math.round(this.income / net);
+		const percent = net / this.income * 100;
 		return {
 			gross: this.income,
 			net,
