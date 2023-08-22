@@ -1,6 +1,8 @@
 <script>
 	import TakehomeStats from './TakehomeStats.svelte';
 	import { newTakehome } from '$lib/takehome.js';
+	import PeriodSelector from './PeriodSelector.svelte';
+
 	let income = {
 		pay: 61692.8,
 		period: 'year',
@@ -23,31 +25,22 @@
 					class="o-text-2xl py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600"
 				/>
 				per
-				<select
-					bind:value={income.period}
-					class="o-text-2xl py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600"
-				>
-					<option value="hour">hour</option>
-					<option value="week">week</option>
-					<option value="fortnight">fortnight</option>
-					<option value="month">month</option>
-					<option value="year">year</option>
-				</select>
+				<PeriodSelector bind:selectedPeriod={income.period} />
 				and contribute
 				<input
 					type="number"
 					bind:value={income.kiwiSaver}
 					class="o-text-2xl py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600"
 				/>
-				% to kiwisaver, with
+				% to kiwisaver with
 				<label
 					class="swap py-2.5 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600"
 				>
-					<input type="checkbox" bind:value={income.hasStudentLoan} />
+					<input type="checkbox" bind:checked={income.hasStudentLoan} />
 					<div class="swap-on">no student loan</div>
 					<div class="swap-off">a student loan</div>
 				</label>
-				.
+				. {income.hasStudentLoan}
 			</h3>
 			<div class="flex justify-end">
 				<a

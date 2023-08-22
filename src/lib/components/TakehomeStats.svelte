@@ -1,5 +1,5 @@
 <script>
-	import PeriodSelector from './PeriodSelector.svelte';
+	import PeriodRadio from './PeriodRadio.svelte';
 	import { convertTakehome } from '$lib/takehome.js';
 	export let takehome;
 	let selectedPeriod = takehome.period;
@@ -58,6 +58,6 @@
 		</div>
 	</div>
 	<div class="flex justify-center p-5">
-		<PeriodSelector bind:selectedPeriod />
+		<PeriodRadio bind:selectedPeriod />
 	</div>
 </main>
