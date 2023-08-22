@@ -40,13 +40,10 @@
 					<div class="swap-on">no student loan</div>
 					<div class="swap-off">a student loan</div>
 				</label>
-				. {income.hasStudentLoan}
+				.
 			</h3>
-			<div class="flex justify-end">
-				<a
-					href="/calculator"
-					class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-				>
+			<div class="flex justify-end p-5">
+				<a href="/calculator" class="btn">
 					See breakdown
 					<svg
 						class="w-3.5 h-3.5 ml-2"

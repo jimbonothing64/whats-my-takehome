@@ -1,5 +1,7 @@
 <script>
 	import PeriodRadio from './PeriodRadio.svelte';
+	import Formated from './Formated.svelte';
+	import { default as formats } from '$lib/format.js';
 	import { convertTakehome } from '$lib/takehome.js';
 	export let takehome;
 	let selectedPeriod = takehome.period;
@@ -26,7 +28,9 @@
 				</svg>
 			</div>
 			<div class="stat-title">Takehome</div>
-			<div class="stat-value">${takehome.expenses.net || '-'}</div>
+			<div class="stat-value">
+				<Formated bind:value={takehome.expenses.net} format={formats.money} />
+			</div>
 			<div class="stat-desc">per {selectedPeriod}</div>
 		</div>
 
@@ -53,7 +57,9 @@
 				</svg>
 			</div>
 			<div class="stat-title">You keep</div>
-			<div class="stat-value">{takehome.percent || '-'}%</div>
+			<div class="stat-value">
+				<Formated bind:value={takehome.percent} format={formats.percent} />
+			</div>
 			<div class="stat-desc">of your pay</div>
 		</div>
 	</div>
