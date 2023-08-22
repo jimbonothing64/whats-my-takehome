@@ -1,6 +1,8 @@
 <script>
 	import PeriodSelector from './PeriodSelector.svelte';
+	// import { default as availablePeriods } from '$lib/period.js';
 	export let takehome;
+	let selectedPeriod = takehome.period;
 </script>
 
 <main>
@@ -24,7 +26,7 @@
 			</div>
 			<div class="stat-title">Takehome</div>
 			<div class="stat-value">${takehome.net || '-'}</div>
-			<div class="stat-desc">per {takehome.period}</div>
+			<div class="stat-desc">per {selectedPeriod}</div>
 		</div>
 
 		<div class="stat">
@@ -54,5 +56,7 @@
 			<div class="stat-desc">of your pay</div>
 		</div>
 	</div>
-	<PeriodSelector />
+	<div class="flex justify-center p-5">
+		<PeriodSelector bind:selectedPeriod />
+	</div>
 </main>

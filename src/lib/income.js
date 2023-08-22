@@ -1,5 +1,3 @@
-import { convertToYearly } from '$lib/period.js';
-
 const TAX_BRACKETS = [
 	{ min: 0, max: 14000, rate: 0.105 },
 	{ min: 14001, max: 48000, rate: 0.175 },
@@ -73,8 +71,7 @@ class NZIncome {
 	}
 }
 
-export function yearlyTakehome(income) {
-	const yearlyPay = convertToYearly(income.pay, income.period);
-	const calculator = new NZIncome(yearlyPay, income.kiwiSaver, income.hasStudentLoan);
+export function takehome(income) {
+	const calculator = new NZIncome(income.pay, income.kiwiSaver, income.hasStudentLoan);
 	return calculator.takehome();
 }
