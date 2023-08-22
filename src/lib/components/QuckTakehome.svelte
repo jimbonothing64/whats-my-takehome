@@ -7,17 +7,9 @@
 		kiwiSaver: 3,
 		hasStudentLoan: true
 	};
-	let takehome = {
-		gross: 0,
-		period: 'year',
-		net: 0,
-		tax: 0,
-		acc: 0,
-		kiwiSaver: 0,
-		studentLoan: 0
-	};
+	let takehome = newTakehome(income);
 
-	$: takehome = newTakehome(income, income.period);
+	$: takehome = newTakehome(income);
 </script>
 
 <main>

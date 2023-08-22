@@ -11,7 +11,7 @@ const ACC_LEVY = 1.53 / 100;
 const STUDENT_LOAN_RATE = 12 / 100;
 const STUDENT_THRESHOLD = 22828; // Anualized.
 
-class NZIncome {
+class NZIncomeYear {
 	constructor(income, kiwiSaver, hasStudentLoan) {
 		this.income = income || 0;
 		this.kiwiSaver = kiwiSaver / 100 || 0;
@@ -73,7 +73,7 @@ class NZIncome {
 	}
 }
 
-export function takehome(income) {
-	const calculator = new NZIncome(income.pay, income.kiwiSaver, income.hasStudentLoan);
+export function takehomeYear(income) {
+	const calculator = new NZIncomeYear(income.pay, income.kiwiSaver, income.hasStudentLoan);
 	return calculator.takehome();
 }

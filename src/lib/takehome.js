@@ -1,14 +1,16 @@
-import { takehome as takehomeIncome } from './income';
+import { takehomeYear } from './income';
 import { convertToYearly, convertfromYearly } from './convert';
+import periods from './period';
 
-export function newTakehome(income, period) {
-	const yearlyPay = convertToYearly(income.pay, period);
-	const periodPay = convertfromYearly(yearlyPay, period);
-	const periodIncome = {
+export function newTakehome(income) {
+	const yearlyPay = convertToYearly(income.pay, income.period);
+	const yearlyIncome = {
 		...income,
-		pay: periodPay
+		pay: yearlyPay,
+		period: periods.year
 	};
-	return takehomeIncome(periodIncome, period);
+	const yearlyTakehome = takehomeYear(yearlyIncome);
+	return yearlyTakehome;
 }
 
 export function convertTakehome(takehome, newPeriod) {
@@ -21,6 +23,5 @@ export function convertTakehome(takehome, newPeriod) {
 		const yearlyAmount = convertToYearly(amount, oldPeriod);
 		takehome.expenses[expense] = convertfromYearly(yearlyAmount, newPeriod);
 	}
-
 	return converted;
 }
