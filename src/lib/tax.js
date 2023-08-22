@@ -1,3 +1,5 @@
+import { convertToYearly } from '$lib/period.js';
+
 const TAX_BRACKETS = [
 	{ min: 0, max: 14000, rate: 0.105 },
 	{ min: 14001, max: 48000, rate: 0.175 },
@@ -10,10 +12,6 @@ const ACC_LEVY = 1.53 / 100;
 
 const STUDENT_LOAN_RATE = 12 / 100;
 const STUDENT_THRESHOLD = 22828; // Anualized.
-
-const WEEKS_IN_YEAR = 52;
-const MONTHS_IN_YEAR = 12;
-const HOURS_IN_YEAR = 2080;
 
 class NZIncome {
 	constructor(income, kiwiSaver, hasStudentLoan) {
@@ -29,9 +27,10 @@ class NZIncome {
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
 		const net = this.income - kiwiSaver - acc - tax - studentLoan;
-		const percent = net / this.income * 100;
+		const percent = (net / this.income) * 100;
 		return {
 			gross: this.income,
+			period: 'year',
 			net,
 			tax,
 			acc,
@@ -74,37 +73,7 @@ class NZIncome {
 	}
 }
 
-function convertToYearly(pay, period) {
-	switch (period) {
-		case 'year':
-			return pay;
-		case 'month':
-			return pay * MONTHS_IN_YEAR;
-		case 'week':
-			return pay * WEEKS_IN_YEAR;
-		case 'hour':
-			return pay * HOURS_IN_YEAR;
-		default:
-			return -1;
-	}
-}
-
-function convertfromYearly(pay, period) {
-	switch (period) {
-		case 'year':
-			return pay;
-		case 'month':
-			return pay / MONTHS_IN_YEAR;
-		case 'week':
-			return pay / WEEKS_IN_YEAR;
-		case 'hour':
-			return pay / HOURS_IN_YEAR;
-		default:
-			return -1;
-	}
-}
-
-export  function yearlyTakehome(income) {
+export function yearlyTakehome(income) {
 	const yearlyPay = convertToYearly(income.pay, income.period);
 	const calculator = new NZIncome(yearlyPay, income.kiwiSaver, income.hasStudentLoan);
 	return calculator.takehome();

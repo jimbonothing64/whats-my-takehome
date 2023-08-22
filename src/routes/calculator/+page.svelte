@@ -1,7 +1,7 @@
 <script>
 	import { yearlyTakehome } from '$lib/tax.js';
 	let income = {
-		pay: 0,
+		pay: 61692.8,
 		period: 'year',
 		hasStudentLoan: true
 	};
