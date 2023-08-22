@@ -1,8 +1,9 @@
 <script>
 	import PeriodSelector from './PeriodSelector.svelte';
-	// import { default as availablePeriods } from '$lib/period.js';
+	import { convertTakehome } from '$lib/takehome.js';
 	export let takehome;
 	let selectedPeriod = takehome.period;
+	$: takehome = convertTakehome(takehome, selectedPeriod);
 </script>
 
 <main>
@@ -25,7 +26,7 @@
 				</svg>
 			</div>
 			<div class="stat-title">Takehome</div>
-			<div class="stat-value">${takehome.net || '-'}</div>
+			<div class="stat-value">${takehome.expenses.net || '-'}</div>
 			<div class="stat-desc">per {selectedPeriod}</div>
 		</div>
 

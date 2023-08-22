@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { yearlyTakehome } from '$lib/tax.js';
 	let income = {
 		pay: 61692.8,
@@ -123,4 +123,4 @@
 			</table>
 		</div>
 	</div>
-</main>
+</main> -->

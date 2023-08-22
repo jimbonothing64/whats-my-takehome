@@ -27,14 +27,16 @@ class NZIncome {
 		const net = this.income - kiwiSaver - acc - tax - studentLoan;
 		const percent = (net / this.income) * 100;
 		return {
-			gross: this.income,
 			period: 'year',
-			net,
-			tax,
-			acc,
-			kiwiSaver,
-			studentLoan,
-			percent
+			percent,
+			expenses: {
+				gross: this.income,
+				net,
+				tax,
+				acc,
+				kiwiSaver,
+				studentLoan
+			}
 		};
 	}
 

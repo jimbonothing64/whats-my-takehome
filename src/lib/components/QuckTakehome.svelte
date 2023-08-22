@@ -1,6 +1,6 @@
 <script>
 	import TakehomeStats from './TakehomeStats.svelte';
-	import { takehome as calculate } from '$lib/takehome.js';
+	import { newTakehome } from '$lib/takehome.js';
 	let income = {
 		pay: 61692.8,
 		period: 'year',
@@ -17,7 +17,7 @@
 		studentLoan: 0
 	};
 
-	$: takehome = calculate(income);
+	$: takehome = newTakehome(income, income.period);
 </script>
 
 <main>
