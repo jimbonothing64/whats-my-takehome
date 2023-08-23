@@ -5,7 +5,11 @@
 	import { convertTakehome } from '$lib/takehome.js';
 	export let takehome;
 	let selectedPeriod = takehome.period;
-	$: takehome = convertTakehome(takehome, selectedPeriod);
+	$: {
+		console.log(takehome);
+		takehome = convertTakehome(takehome, selectedPeriod);
+		console.log(takehome);
+	}
 </script>
 
 <main>

@@ -17,11 +17,11 @@ export function convertTakehome(takehome, newPeriod) {
 	const oldPeriod = takehome.period;
 	const converted = {
 		...takehome,
-		newPeriod
+		period: newPeriod
 	};
-	for (const [expense, amount] of Object.entries(takehome.expenses)) {
+	for (const [expense, amount] of Object.entries(converted.expenses)) {
 		const yearlyAmount = convertToYearly(amount, oldPeriod);
-		takehome.expenses[expense] = convertfromYearly(yearlyAmount, newPeriod);
+		converted.expenses[expense] = convertfromYearly(yearlyAmount, newPeriod);
 	}
 	return converted;
 }

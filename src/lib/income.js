@@ -25,7 +25,7 @@ class NZIncomeYear {
 		const kiwiSaver = this.calculateKiwisaver();
 		const studentLoan = this.calculateStudentLoan();
 		const net = this.income - kiwiSaver - acc - tax - studentLoan;
-		const percent = (net / this.income) * 100;
+		const percent = (net / this.income) * 100 || 0;
 		return {
 			period: 'year',
 			percent,
