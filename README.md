@@ -4,12 +4,12 @@ Work out what time takehome pay will be
 
 - User can enter their pay in varoius formats and be shown their takehome pay after tax(es)
 - User can see breakdown of their tax(es) copared to takehome
-- User can select their tax, kiwisaver and IETC
-- User can see this breakdown with week, fortnight, month and year
+- [x]User can select their tax, kiwisaver and IETC
+- [x] User can see this breakdown with week, fortnight, month and year
 - User can see overview prevoius calculations
 - User can switch between prevoius calculations (hotloading)
 - User can easily add 1k, 5k and 10k per year
-- User can change how often they get paid
+- [x] User can change how often they get paid
 - User can see graphs (pie?) (line?)
 
 # create-svelte

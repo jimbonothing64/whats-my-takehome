@@ -1,7 +1,7 @@
 <script>
 	import TakehomeStats from './TakehomeStats.svelte';
-	import { newTakehome } from '$lib/takehome.js';
 	import PeriodSelector from './PeriodSelector.svelte';
+	import { newTakehome } from '$lib/takehome.js';
 
 	let income = {
 		pay: 61692.8,
@@ -17,7 +17,7 @@
 <main>
 	<div class="p-5 flex flex-row gap-5">
 		<form class="basis-2/3 p-3">
-			<h3 class="text-2xl">
+			<h3 class="text-xl">
 				I make $
 				<input
 					type="number"
@@ -72,7 +72,7 @@
 <style>
 	/* Override */
 	.o-text-2xl {
-		@apply text-2xl;
+		@apply text-xl;
 	}
 
 	/* No arrows: Chrome, Safari, Edge, Opera*/

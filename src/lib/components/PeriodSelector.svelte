@@ -18,6 +18,6 @@
 <style>
 	/* Override */
 	.o-text-2xl {
-		@apply text-2xl;
+		@apply text-lg;
 	}
 </style>
