@@ -42,8 +42,8 @@
 					class="swap py-2.5 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600"
 				>
 					<input type="checkbox" bind:checked={income.hasStudentLoan} />
-					<div class="swap-on">no student loan</div>
 					<div class="swap-off">a student loan</div>
+					<div class="swap-on">no student loan</div>
 				</label>
 				.
 			</h3>
