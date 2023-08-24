@@ -1,7 +1,10 @@
 <script>
-	import TakehomeStats from './TakehomeStats.svelte';
 	import PeriodSelector from './PeriodSelector.svelte';
+	import TakehomeStats from './TakehomeStats.svelte';
+	import TakehomeGraph from './TakehomeGraph.svelte';
+	import PeriodRadio from './PeriodRadio.svelte';
 	import { newTakehome } from '$lib/takehome.js';
+	import { convertTakehome } from '$lib/takehome.js';
 
 	let income = {
 		pay: 61692.8,
@@ -10,7 +13,9 @@
 		hasStudentLoan: true
 	};
 	let takehome = newTakehome(income);
+	let selectedPeriod = takehome.period;
 
+	$: takehome = convertTakehome(takehome, selectedPeriod);
 	$: takehome = newTakehome(income);
 </script>
 
@@ -64,7 +69,11 @@
 			</div>
 		</form>
 		<div>
-			<TakehomeStats bind:takehome />
+			<TakehomeStats bind:takehome bind:selectedPeriod />
+			<TakehomeGraph bind:takehome />
+			<div class="flex justify-center p-5">
+				<PeriodRadio bind:selectedPeriod />
+			</div>
 		</div>
 	</div>
 </main>

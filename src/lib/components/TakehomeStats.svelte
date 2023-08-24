@@ -1,15 +1,8 @@
 <script>
-	import PeriodRadio from './PeriodRadio.svelte';
 	import Formated from './Formated.svelte';
 	import { default as formats } from '$lib/format.js';
-	import { convertTakehome } from '$lib/takehome.js';
 	export let takehome;
-	let selectedPeriod = takehome.period;
-	$: {
-		console.log(takehome);
-		takehome = convertTakehome(takehome, selectedPeriod);
-		console.log(takehome);
-	}
+	export let selectedPeriod;
 </script>
 
 <main>
@@ -66,8 +59,5 @@
 			</div>
 			<div class="stat-desc">of your pay</div>
 		</div>
-	</div>
-	<div class="flex justify-center p-5">
-		<PeriodRadio bind:selectedPeriod />
 	</div>
 </main>
