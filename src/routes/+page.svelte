@@ -23,15 +23,33 @@
 	}
 </script>
 
-<div class="p-5 flex flex-col md:flex-row gap-5">
+<div class="p-5 flex flex-col lg:flex-row gap-5">
 	<div>
-		<p>
-			Change the inputs below to see what your takehome would be in different pay periods. Tap the
-			parts of the graph to see where your money is going.
-		</p>
-		<QuickIncomeForm bind:income />
+		<Card>
+			<QuickIncomeForm bind:income />
+		</Card>
+		<div tabindex="-1" class="collapse">
+			<div class="collapse-title">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					class="stroke-current shrink-0 w-6 h-6"
+					><path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+					/></svg
+				>
+			</div>
+			<div class="collapse-content">
+				Change the inputs below to see what your takehome would be in different pay periods. Tap the
+				parts of the graph to see where your money is going.
+			</div>
+		</div>
 	</div>
-	<div class="max-w-lg flex alighn-content-center">
+	<div class="max-w-lg flex align-content-center">
 		<Card>
 			<TakehomeStats bind:takehome bind:selectedPeriod />
 			<TakehomeGraph bind:takehome />

@@ -128,5 +128,5 @@
 </script>
 
 <main>
-	<div bind:this={chartDiv} style="width: 500px; height: 311px;" />
+	<div bind:this={chartDiv} class="w-full" />
 </main>

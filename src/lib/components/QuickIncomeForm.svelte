@@ -4,7 +4,7 @@
 	$: income;
 </script>
 
-<form class="p-3">
+<form class="p-5">
 	<h3 class="text-xl">
 		I make $
 		<input

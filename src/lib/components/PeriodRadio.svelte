@@ -8,7 +8,7 @@
 	<div class="join">
 		{#each periods as period}
 			<input
-				class="join-item btn"
+				class="join-item btn btn-xs sm:btn-sm md:btn-md"
 				type="radio"
 				name="options"
 				aria-label={period}

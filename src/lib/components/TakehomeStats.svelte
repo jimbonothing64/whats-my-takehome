@@ -6,7 +6,7 @@
 </script>
 
 <main>
-	<div class="flex justify-center stats stats-vertical lg:stats-horizontal">
+	<div class="stats-vertical">
 		<div class="stat">
 			<div class="stat-figure text-secondary">
 				<svg
