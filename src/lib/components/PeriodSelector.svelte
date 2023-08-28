@@ -16,7 +16,7 @@
 </main>
 
 <style>
-	/* Override */
+	/* Override daisy ui...*/
 	.o-text-2xl {
 		@apply text-lg;
 	}
