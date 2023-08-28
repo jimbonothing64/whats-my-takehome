@@ -4,6 +4,7 @@
 	import QuickIncomeForm from '$lib/components/QuickIncomeForm.svelte';
 	import TakehomeStats from '$lib/components/TakehomeStats.svelte';
 	import TakehomeGraph from '$lib/components/TakehomeGraph.svelte';
+	import HelperText from '$lib/components/HelperText.svelte';
 
 	import { newTakehome } from '$lib/takehome.js';
 	import { convertTakehome } from '$lib/takehome.js';
@@ -27,27 +28,11 @@
 	<div>
 		<Card>
 			<QuickIncomeForm bind:income />
-		</Card>
-		<div tabindex="-1" class="collapse">
-			<div class="collapse-title">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					class="stroke-current shrink-0 w-6 h-6"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-					/></svg
-				>
-			</div>
-			<div class="collapse-content">
+			<HelperText>
 				Change the inputs below to see what your takehome would be in different pay periods. Tap the
 				parts of the graph to see where your money is going.
-			</div>
-		</div>
+			</HelperText>
+		</Card>
 	</div>
 	<div class="max-w-lg flex align-content-center">
 		<Card>

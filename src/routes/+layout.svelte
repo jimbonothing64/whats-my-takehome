@@ -5,9 +5,7 @@
 <body class="flex flex-col min-h-screen">
 	<slot />
 	<footer class="mt-auto footer items-center p-4 bg-neutral text-neutral-content">
-		<div class="items-center grid-flow-col">
-			<p>Disclaimer: probably broken</p>
-		</div>
+		<div class="items-center grid-flow-col">© James Napier, 2023</div>
 		<div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
 			<a href="https://github.com/jimbonothing64"
 				><svg
